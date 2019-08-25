@@ -1,0 +1,15 @@
+// npm install -s mailslurp-client
+import { MailSlurp } from "mailslurp-client"
+
+// instantiate
+const apiKey = "f09493e29589e43068bf73d49dd644d86fb6727483dde887a2577477278ad532"
+const api = new MailSlurp({ apiKey })
+
+// create new email address
+const { id, emailAddress } = await api.createNewEmailAddress()
+
+// send email
+await api.sendEmailSimple(emailAddress, { to: ['destination@email.address'] })
+
+// get latest email (when you send an email to a mailslurp address)
+await api.fetchLatestEmail(id + '@mailslurp.com')
